@@ -23,17 +23,19 @@ const app = express();
  })
  */
 
- app.use(logger('dev')) //using morgan middleware to log
+ // configure express app to use the ejs templating engine for our app's views
+app.set('view engine', 'ejs')
+
+
+// app.use(logger('dev')) //using morgan middleware to log
 
 // when user visits 'http://localhost:4545/helloWorld (VERB: get)' a call back function is called (request & response are objects)
- app.get('/helloWorld', (request, response) => {
+app.get('/helloWorld', (request, response) => {
 
    // this callback (which receives a request & response) is usually named `Middleware`
    // the arguments passed to this callback are in order: request, response, next
    // - request: an object that contains the entire message from the client (usually a browser)
    // - response: an object that contains the message our server will reply with back to the client
-
-
 
 
 
@@ -47,11 +49,14 @@ const app = express();
 
 
 
+  response.send('Yo!');
+});
 
 
+ app.get('/', (request, response) => {
+   // use '.render' instead of '.send' when you want to show a view from your views folder in the browser
+  response.render('index');
+})
 
-   response.send('Yo!');
- });
-
- const PORT = 4545;
- app.listen(PORT, () => { console.log(`💻 Server listening on http://localhost:${PORT}`)})
+const PORT = 4545;
+app.listen(PORT, () => { console.log(`💻 Server listening on http://localhost:${PORT}`)})
