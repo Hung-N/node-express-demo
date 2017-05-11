@@ -9,16 +9,21 @@
 
  */
 
- const express = require('express'); //require is a function that is part of nod that is used to load modules.
+const express = require('express'); //require is a function that is part of nod that is used to load modules.
+const logger = require('morgan'); //http logger
 
- const app = express();
+const app = express();
 
+/*
 // unlike app.get, app.use will work for all HTTP verbs, if we do not give a URL (string) for the first argument, it will match for every URL
  app.use((request, response, next) => {
    console.log(`${request.method} - ${request.path} - ${new Date().toString()}`)
    // next(); is a callback function and third argument of the middleware callback, tells express to move on the the next middleware
    next();
  })
+ */
+
+ app.use(logger('dev')) //using morgan middleware to log
 
 // when user visits 'http://localhost:4545/helloWorld (VERB: get)' a call back function is called (request & response are objects)
  app.get('/helloWorld', (request, response) => {
@@ -27,6 +32,21 @@
    // the arguments passed to this callback are in order: request, response, next
    // - request: an object that contains the entire message from the client (usually a browser)
    // - response: an object that contains the message our server will reply with back to the client
+
+
+
+
+
+
+
+// hi hung :)
+
+
+
+
+
+
+
 
 
 
