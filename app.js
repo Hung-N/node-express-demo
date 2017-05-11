@@ -9,8 +9,9 @@
 
  */
 
-const express = require('express'); //require is a function that is part of nod that is used to load modules.
-const logger = require('morgan'); //http logger
+const express = require('express'); // require is a function that is part of nod that is used to load modules.
+const logger = require('morgan'); // http logger package
+const home = require('./routes/home'); //
 
 const app = express();
 
@@ -27,7 +28,9 @@ const app = express();
 app.set('view engine', 'ejs')
 
 
-// app.use(logger('dev')) //using morgan middleware to log
+app.use(logger('dev')) //using morgan middleware to log
+
+app.use('/', home);
 
 // when user visits 'http://localhost:4545/helloWorld (VERB: get)' a call back function is called (request & response are objects)
 app.get('/helloWorld', (request, response) => {
@@ -52,11 +55,12 @@ app.get('/helloWorld', (request, response) => {
   response.send('Yo!');
 });
 
-
- app.get('/', (request, response) => {
+/*
+app.get('/', (request, response) => {
    // use '.render' instead of '.send' when you want to show a view from your views folder in the browser
   response.render('index');
 })
+*/
 
 const PORT = 4545;
 app.listen(PORT, () => { console.log(`💻 Server listening on http://localhost:${PORT}`)})
