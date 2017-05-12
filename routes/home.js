@@ -16,8 +16,16 @@ router.get('/contact', (req, res) => {
 })
 
 router.post('/contact', (req,res) => {
-  const param = req.body
-  res.render('contact', param);
+  const params = req.body
+  // cookies are stored in the browser.
+  // to create a cookie we must tell the browser in our response to add a cookie of given name with given values
+  // 👇🏻  would add ...
+  res.cookie('fullName', params.fullName);
+
+
+  // you can store arrays and objects in cookies.  However they are serialized (transformed) into strings by the cookie-parser, then it parses it back into the original javascript data for your usage.
+  res.cookie('things', ['power supply', 'pile of crap', 'kitchen sink']);
+  res.render('contact', params);
 })
 
 // when this file will be required, it will return the object assigned to module.exports (i.e. the router object as seen here)
