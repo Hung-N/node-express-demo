@@ -11,7 +11,9 @@
 
 const express = require('express'); // require is a function that is part of nod that is used to load modules.
 const logger = require('morgan'); // http logger package
-const home = require('./routes/home'); //
+const home = require('./routes/home'); // importing home.js
+const bodyParser = require('body-parser'); // middleware used to transform data into usable objects
+const path = require('path');
 
 const app = express();
 
@@ -25,11 +27,12 @@ const app = express();
  */
 
  // configure express app to use the ejs templating engine for our app's views
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 
-app.use(logger('dev')) //using morgan middleware to log
-
+app.use(logger('dev')); //using morgan middleware to log
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({extended: false})); // will return middleware that will transform the raw data of the request into a javascript object that will be assigned to 'req.body'
 app.use('/', home);
 
 // when user visits 'http://localhost:4545/helloWorld (VERB: get)' a call back function is called (request & response are objects)
