@@ -10,7 +10,7 @@
     "debug": "nodemon --inspect app.js",
     "db:create" : "createdb --echo ned",
     "db:drop" : "dropdb --echo ned",
-    "db:migrate" : "node. /db/migrate.js",
+    "db:migrate" : "node ./db/migrate.js",
     "db:seed" : "node ./db/seeds.js",
     "db:setup" : "yarn db:drop && yarn db:create && yarn db:migrate && yarn db:seed"
   },

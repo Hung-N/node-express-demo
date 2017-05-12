@@ -1,4 +1,12 @@
 html {
-  background-color: lavender;
+  background-color: lightgrey;
   font-family: Baloo, helvetica;
+}
+
+h1 {
+  color: orange;
+}
+
+h2 {
+  color: blue;
 }

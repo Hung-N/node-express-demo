@@ -12,6 +12,7 @@
 const express = require('express'); // require is a function that is part of nod that is used to load modules.
 const logger = require('morgan'); // http logger package
 const home = require('./routes/home'); // importing home.js
+const posts = require('./routes/posts');
 const bodyParser = require('body-parser'); // middleware used to transform data into usable objects
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -41,6 +42,8 @@ app.use((req, res, next) => {
   console.log('🍪🍪🍪🍪', cookies);
   next();
 })
+
+app.use('/posts', posts);
 app.use('/', home);
 
 // when user visits 'http://localhost:4545/helloWorld (VERB: get)' a call back function is called (request & response are objects)

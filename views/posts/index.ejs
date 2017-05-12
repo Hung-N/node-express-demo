@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs') %>
+
+    <%# <h1> Node & Express Demo </h1>%>
+
+    <%#
+    directory: `${__dirname}/public/images'`
+    URL: `http://localhost:4545/images/dota2.jpg`
+    %>
+    <%# <img src="/images/dota2.jpg" />%>
+
+    
+
+    <%- include('../partials/header') %>
+<h1>Posts</h1>
+
+<div class="post-list">
+<% for (let post of posts) { %>
+  <div>
+    <a href="<%= `/posts/${post.id}` %>"><%= post.title %></a>
+  </div>
+<% } %>
+</div>
+
+<%- include('../partials/footer') %>
+
+<%- include('../partials/footer.ejs') %>
